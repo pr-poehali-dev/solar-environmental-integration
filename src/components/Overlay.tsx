@@ -10,7 +10,7 @@ export default function Overlay() {
           transition={{ duration: 1.2, delay: 0.5, ease: [0.43, 0.13, 0.23, 0.96] }}
           className="font-serif text-2xl md:text-3xl font-light text-white tracking-widest uppercase"
         >
-          Рыбы Северо-Запада
+          Сухона и Юг
         </motion.h1>
         <motion.p
           initial={{ opacity: 0 }}
@@ -18,7 +18,7 @@ export default function Overlay() {
           transition={{ duration: 1.2, delay: 0.9 }}
           className="text-white/50 text-sm tracking-wider font-light"
         >
-          Справочник · Виды · Снасти
+          Достопримечательности · Вологодская область
         </motion.p>
       </div>
 

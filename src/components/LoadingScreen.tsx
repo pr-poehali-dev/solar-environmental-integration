@@ -29,7 +29,7 @@ export default function LoadingScreen() {
           transition={{ duration: 0.8 }}
           className="font-serif text-4xl mb-4"
         >
-          Рыбы Северо-Запада
+          Сухона и Юг
         </motion.div>
         <motion.p
           initial={{ opacity: 0 }}
@@ -37,7 +37,7 @@ export default function LoadingScreen() {
           transition={{ duration: 0.8, delay: 0.3 }}
           className="text-sm text-muted-foreground mb-4 tracking-widest uppercase"
         >
-          Справочник рыболова
+          Достопримечательности Вологодчины
         </motion.p>
         <motion.div
           initial={{ scaleX: 0 }}

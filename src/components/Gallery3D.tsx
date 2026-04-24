@@ -49,7 +49,7 @@ export default function Gallery3D() {
                 <p className="text-white/70 text-sm leading-relaxed mb-4">{fish.desc}</p>
 
                 <div className="mb-3">
-                  <p className="text-white/40 text-xs uppercase tracking-widest mb-2">Снасти и приманки</p>
+                  <p className="text-white/40 text-xs uppercase tracking-widest mb-2">Что посмотреть</p>
                   <div className="flex flex-wrap gap-1.5">
                     {fish.baits.map((b) => (
                       <span
@@ -79,7 +79,7 @@ export default function Gallery3D() {
           transition={{ delay: 2 }}
           className="absolute right-6 top-1/2 -translate-y-1/2 z-20 pointer-events-none"
         >
-          <p className="text-white/25 text-xs text-right">Нажмите на рыбу<br/>чтобы узнать подробнее</p>
+          <p className="text-white/25 text-xs text-right">Нажмите на фото<br/>чтобы узнать подробнее</p>
         </motion.div>
       )}
     </div>
