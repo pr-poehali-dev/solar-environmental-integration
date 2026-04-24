@@ -1,3 +1,7 @@
-# solar-environmental-integration
+# Кинетическая 3D Галерея
 
-Initial repository setup for pr-poehali-dev/solar-environmental-integration
+![Preview](preview.png)
+
+Интерактивная 3D галерея с парящими фотографиями в стиле motion blur. Построена на React Three Fiber с плавными анимациями, управлением мышью/тачем/клавиатурой и автоматической прокруткой. Идеально подходит для портфолио фотографов, креативных агентств и арт-проектов.
+
+`"tags": ["portfolio", "3d", "dark", "animations", "creative"]`
