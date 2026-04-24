@@ -1,7 +1,20 @@
 import { useRef, useState, useEffect } from "react"
 import { useFrame, useThree } from "@react-three/fiber"
-import { useTexture } from "@react-three/drei"
 import * as THREE from "three"
+
+THREE.DefaultLoadingManager.onStart = () => {}
+const textureLoader = new THREE.TextureLoader()
+textureLoader.crossOrigin = "anonymous"
+
+function useTextures(urls: string[]) {
+  const [textures, setTextures] = useState<THREE.Texture[]>([])
+  useEffect(() => {
+    Promise.all(urls.map(url => new Promise<THREE.Texture>((resolve, reject) => {
+      textureLoader.load(url, resolve, undefined, reject)
+    }))).then(setTextures).catch(() => {})
+  }, [])
+  return textures
+}
 
 const fishData = [
   {
@@ -156,7 +169,7 @@ export default function Scene({ onSelectFish }: SceneProps) {
   const dragStart = useRef({ x: 0, y: 0 })
   const dragRotation = useRef(0)
 
-  const textures = useTexture(images)
+  const textures = useTextures(images)
 
   // Mouse parallax effect
   useEffect(() => {
