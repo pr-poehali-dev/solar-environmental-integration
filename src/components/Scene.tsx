@@ -49,9 +49,12 @@ function useTextures(urls: string[]) {
   return textures
 }
 
+const PROXY = "https://functions.poehali.dev/7a9b8813-38a2-4c95-be1f-834c89959795"
+const p = (url: string) => `${PROXY}?url=${encodeURIComponent(url)}`
+
 const fishData = [
   {
-    img: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Esox_lucius_1.jpg/800px-Esox_lucius_1.jpg",
+    img: p("https://cdn.poehali.dev/projects/e0c3d6a7-798f-46f2-a0a7-4f3cf94ac813/files/18774966-27c7-4c8e-b27e-76bcd50b6247.jpg"),
     name: "Щука",
     latin: "Esox lucius",
     desc: "Главный хищник пресных вод. Достигает 1.5 м и 35 кг. Обитает в реках, озёрах и водохранилищах СЗ России.",
@@ -59,7 +62,7 @@ const fishData = [
     season: "Круглый год"
   },
   {
-    img: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Perca_fluviatilis_drawing.jpg/800px-Perca_fluviatilis_drawing.jpg",
+    img: p("https://cdn.poehali.dev/projects/e0c3d6a7-798f-46f2-a0a7-4f3cf94ac813/files/ce79aa57-4f34-435d-b148-bf98a84d0057.jpg"),
     name: "Окунь",
     latin: "Perca fluviatilis",
     desc: "Самая распространённая рыба региона. Стайный хищник, активен в любое время года. Ловится везде.",
@@ -67,7 +70,7 @@ const fishData = [
     season: "Круглый год"
   },
   {
-    img: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Salmo_salar_flyfishing.jpg/800px-Salmo_salar_flyfishing.jpg",
+    img: p("https://cdn.poehali.dev/projects/e0c3d6a7-798f-46f2-a0a7-4f3cf94ac813/files/2081e3ed-7c3f-4d08-9be1-ae21edcd616c.jpg"),
     name: "Лосось атлантический",
     latin: "Salmo salar",
     desc: "Царская рыба. Входит в реки Карелии и Мурманской области. Объект спортивного лицензионного лова.",
@@ -75,7 +78,7 @@ const fishData = [
     season: "Июнь — Октябрь"
   },
   {
-    img: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Sander_lucioperca_01.jpg/800px-Sander_lucioperca_01.jpg",
+    img: p("https://cdn.poehali.dev/projects/e0c3d6a7-798f-46f2-a0a7-4f3cf94ac813/files/41004fe9-0caa-4705-9d01-184200c02147.jpg"),
     name: "Судак",
     latin: "Sander lucioperca",
     desc: "Ценный хищник. Предпочитает крупные водоёмы с чистой водой. Ловится со дна на большой глубине.",
@@ -83,7 +86,7 @@ const fishData = [
     season: "Апрель — Ноябрь"
   },
   {
-    img: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Abramis_brama_Prague_Vltava_1.jpg/800px-Abramis_brama_Prague_Vltava_1.jpg",
+    img: p("https://cdn.poehali.dev/projects/e0c3d6a7-798f-46f2-a0a7-4f3cf94ac813/files/fb66f587-4475-4552-8981-00b3f5012f7d.jpg"),
     name: "Лещ",
     latin: "Abramis brama",
     desc: "Крупный мирный карповый. Держится у дна на глубоких участках. Ночная рыба в тёплое время года.",
@@ -91,7 +94,7 @@ const fishData = [
     season: "Апрель — Ноябрь"
   },
   {
-    img: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Salmo_trutta_Ozark.jpg/800px-Salmo_trutta_Ozark.jpg",
+    img: p("https://cdn.poehali.dev/projects/e0c3d6a7-798f-46f2-a0a7-4f3cf94ac813/files/f2bc0cc8-1c6b-4426-a40a-51fc308ffc01.jpg"),
     name: "Форель ручьевая",
     latin: "Salmo trutta fario",
     desc: "Обитает в холодных прозрачных ручьях и реках Карелии, Ленобласти и Мурманска. Требует лицензии.",
@@ -99,7 +102,7 @@ const fishData = [
     season: "Март — Сентябрь"
   },
   {
-    img: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Silure_2.jpg/800px-Silure_2.jpg",
+    img: p("https://cdn.poehali.dev/projects/e0c3d6a7-798f-46f2-a0a7-4f3cf94ac813/files/7ed37b25-88e2-4c7e-822d-4df9bae2f703.jpg"),
     name: "Сом",
     latin: "Silurus glanis",
     desc: "Крупнейшая пресноводная рыба. Встречается в крупных реках. Активен ночью, прячется в ямах.",
@@ -107,7 +110,7 @@ const fishData = [
     season: "Май — Октябрь"
   },
   {
-    img: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Rutilus_rutilus_Prague_Vltava.jpg/800px-Rutilus_rutilus_Prague_Vltava.jpg",
+    img: p("https://cdn.poehali.dev/projects/e0c3d6a7-798f-46f2-a0a7-4f3cf94ac813/files/3a1e546c-14a0-4c95-a629-3b56e00b83e7.jpg"),
     name: "Плотва",
     latin: "Rutilus rutilus",
     desc: "Самая многочисленная рыба СЗ России. Встречается во всех водоёмах. Отличный объект для начинающих.",
