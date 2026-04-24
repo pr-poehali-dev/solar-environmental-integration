@@ -29,8 +29,16 @@ export default function LoadingScreen() {
           transition={{ duration: 0.8 }}
           className="font-serif text-4xl mb-4"
         >
-          Загрузка
+          Рыбы Северо-Запада
         </motion.div>
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+          className="text-sm text-muted-foreground mb-4 tracking-widest uppercase"
+        >
+          Справочник рыболова
+        </motion.p>
         <motion.div
           initial={{ scaleX: 0 }}
           animate={{ scaleX: 1 }}

@@ -3,24 +3,74 @@ import { useFrame, useThree } from "@react-three/fiber"
 import { useTexture } from "@react-three/drei"
 import * as THREE from "three"
 
-const images = [
-  "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Motion%20Blur%20Photography%20%281%29-KqS753y9z7eEkZKIh0rzbgD3jJjMCl.jpg",
-  "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Motion%20Blur%20Photography%20%284%29-GDfu68kc6bpcQiAUe7C5xMIJmnXCDm.jpg",
-  "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Motion%20Blur%20Photography%20%2810%29-OrLucPOAahIph0YnVgVuGUnsPTaNx8.jpg",
-  "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Motion%20Blur%20Photography%20%282%29-rd1lKJeWsJYrLCZ17qTQLNZkRimW75.jpg",
-  "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Motion%20Blur%20Photography%20%288%29-JyAOFn1dBSpZSlD8nANRaq4hk568jg.jpg",
-  "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Motion%20Blur%20Photography%20%283%29-6VLx3zL2hBDFGSxS4PT00r5a1Mvzgi.jpg",
-  "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Motion%20Blur%20Photography%20%2815%29-WfPVVoZCDiLzMEXhHsDMlLYpZnZowN.jpg",
-  "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Motion%20Blur%20Photography%20%2818%29-Btt8C4BM3F1RXnCwD8WyrscyQQeKWR.jpg",
-  "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Motion%20Blur%20Photography%20%2813%29-X6FjDEWxC3gOkMLPxS2UJxksXtcq6j.jpg",
-  "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Motion%20Blur%20Photography%20%2817%29-y3fTE1IgoWebjYSuTTnt0zsgeyEt6I.jpg",
-  "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Motion%20Blur%20Photography%20%2823%29-A5m4nKEHgoh0oNyb6jLQaU0Ye50cvA.jpg",
-  "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Motion%20Blur%20Photography%20%2811%29-Y6InBk3wTZFovUr6jnnZWaPQgWfl6k.jpg",
-  "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Motion%20Blur%20Photography%20%2814%29-SCCwpaEfvTRrvqlTWqp1MFs5MIBpuV.jpg",
-  "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Motion%20Blur%20Photography%20%2812%29-7WvqhUk9iih5UFMt305jeX9EfTDRGd.jpg",
-  "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Motion%20Blur%20Photography%20%2819%29-sPRqu4ZKsZXybhLs7ecdEYAzTXy6t5.jpg",
-  "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Motion%20Blur%20Photography%20%2820%29-AYYzJPYYfPbM6vSYJGhyWBLNTjdPIx.jpg",
+const fishData = [
+  {
+    img: "https://cdn.poehali.dev/projects/e0c3d6a7-798f-46f2-a0a7-4f3cf94ac813/files/18774966-27c7-4c8e-b27e-76bcd50b6247.jpg",
+    name: "Щука",
+    latin: "Esox lucius",
+    desc: "Главный хищник пресных вод. Достигает 1.5 м и 35 кг. Обитает в реках, озёрах и водохранилищах СЗ России.",
+    baits: ["Воблеры", "Колебалки", "Джиг", "Живец"],
+    season: "Круглый год"
+  },
+  {
+    img: "https://cdn.poehali.dev/projects/e0c3d6a7-798f-46f2-a0a7-4f3cf94ac813/files/ce79aa57-4f34-435d-b148-bf98a84d0057.jpg",
+    name: "Окунь",
+    latin: "Perca fluviatilis",
+    desc: "Самая распространённая рыба региона. Стайный хищник, активен в любое время года. Ловится везде.",
+    baits: ["Вертушки", "Мормышка", "Микроджиг", "Червь"],
+    season: "Круглый год"
+  },
+  {
+    img: "https://cdn.poehali.dev/projects/e0c3d6a7-798f-46f2-a0a7-4f3cf94ac813/files/2081e3ed-7c3f-4d08-9be1-ae21edcd616c.jpg",
+    name: "Лосось атлантический",
+    latin: "Salmo salar",
+    desc: "Царская рыба. Входит в реки Карелии и Мурманской области. Объект спортивного лицензионного лова.",
+    baits: ["Мухи", "Воблеры", "Колебалки", "Девон"],
+    season: "Июнь — Октябрь"
+  },
+  {
+    img: "https://cdn.poehali.dev/projects/e0c3d6a7-798f-46f2-a0a7-4f3cf94ac813/files/41004fe9-0caa-4705-9d01-184200c02147.jpg",
+    name: "Судак",
+    latin: "Sander lucioperca",
+    desc: "Ценный хищник. Предпочитает крупные водоёмы с чистой водой. Ловится со дна на большой глубине.",
+    baits: ["Джиг", "Воблеры (суспендеры)", "Мёртвая рыбка"],
+    season: "Апрель — Ноябрь"
+  },
+  {
+    img: "https://cdn.poehali.dev/projects/e0c3d6a7-798f-46f2-a0a7-4f3cf94ac813/files/fb66f587-4475-4552-8981-00b3f5012f7d.jpg",
+    name: "Лещ",
+    latin: "Abramis brama",
+    desc: "Крупный мирный карповый. Держится у дна на глубоких участках. Ночная рыба в тёплое время года.",
+    baits: ["Фидер", "Донка", "Опарыш", "Перловка", "Мотыль"],
+    season: "Апрель — Ноябрь"
+  },
+  {
+    img: "https://cdn.poehali.dev/projects/e0c3d6a7-798f-46f2-a0a7-4f3cf94ac813/files/f2bc0cc8-1c6b-4426-a40a-51fc308ffc01.jpg",
+    name: "Форель ручьевая",
+    latin: "Salmo trutta fario",
+    desc: "Обитает в холодных прозрачных ручьях и реках Карелии, Ленобласти и Мурманска. Требует лицензии.",
+    baits: ["Мухи (нахлыст)", "Вертушки", "Червь"],
+    season: "Март — Сентябрь"
+  },
+  {
+    img: "https://cdn.poehali.dev/projects/e0c3d6a7-798f-46f2-a0a7-4f3cf94ac813/files/7ed37b25-88e2-4c7e-822d-4df9bae2f703.jpg",
+    name: "Сом",
+    latin: "Silurus glanis",
+    desc: "Крупнейшая пресноводная рыба. Встречается в крупных реках. Активен ночью, прячется в ямах.",
+    baits: ["Квок + живец", "Донка", "Лягушка", "Кальмар"],
+    season: "Май — Октябрь"
+  },
+  {
+    img: "https://cdn.poehali.dev/projects/e0c3d6a7-798f-46f2-a0a7-4f3cf94ac813/files/3a1e546c-14a0-4c95-a629-3b56e00b83e7.jpg",
+    name: "Плотва",
+    latin: "Rutilus rutilus",
+    desc: "Самая многочисленная рыба СЗ России. Встречается во всех водоёмах. Отличный объект для начинающих.",
+    baits: ["Поплавочная удочка", "Мотыль", "Хлеб", "Манка"],
+    season: "Круглый год"
+  },
 ]
+
+const images = fishData.map(f => f.img)
 
 const imagePositions = [
   { pos: [-3.2, 1.8, -2.5] as [number, number, number], rot: [0, 0.4, 0] as [number, number, number], scale: 0.7 },
@@ -45,11 +95,13 @@ interface FloatingImageProps {
   texture: THREE.Texture
   index: number
   rotation: number
+  onSelect: (index: number) => void
 }
 
-function FloatingImage({ texture, index, rotation }: FloatingImageProps) {
+function FloatingImage({ texture, index, rotation, onSelect }: FloatingImageProps) {
   const meshRef = useRef<THREE.Mesh>(null)
-  const config = imagePositions[index]
+  const config = imagePositions[index % imagePositions.length]
+  const [hovered, setHovered] = useState(false)
 
   useFrame((state) => {
     if (!meshRef.current) return
@@ -59,15 +111,26 @@ function FloatingImage({ texture, index, rotation }: FloatingImageProps) {
 
     const time = state.clock.getElapsedTime()
     meshRef.current.position.y = config.pos[1] + Math.sin(time * 0.5 + index) * 0.1
+
+    const targetScale = hovered ? config.scale * 1.08 : config.scale
+    meshRef.current.scale.setScalar(THREE.MathUtils.lerp(meshRef.current.scale.x, targetScale, 0.1))
   })
 
   return (
-    <mesh ref={meshRef} position={config.pos} rotation={config.rot} scale={config.scale}>
+    <mesh
+      ref={meshRef}
+      position={config.pos}
+      rotation={config.rot}
+      scale={config.scale}
+      onClick={() => onSelect(index)}
+      onPointerOver={() => setHovered(true)}
+      onPointerOut={() => setHovered(false)}
+    >
       <planeGeometry args={[0.833, 1.2]} />
       <meshStandardMaterial
         map={texture}
         transparent
-        opacity={0.95}
+        opacity={hovered ? 1 : 0.95}
         side={THREE.DoubleSide}
         roughness={0.3}
         metalness={0.1}
@@ -76,7 +139,13 @@ function FloatingImage({ texture, index, rotation }: FloatingImageProps) {
   )
 }
 
-export default function Scene() {
+export { fishData }
+
+interface SceneProps {
+  onSelectFish: (index: number) => void
+}
+
+export default function Scene({ onSelectFish }: SceneProps) {
   const [rotation, setRotation] = useState(0)
   const [targetRotation, setTargetRotation] = useState(0)
   const [isAutoPlaying, setIsAutoPlaying] = useState(true)
@@ -250,7 +319,7 @@ export default function Scene() {
       <spotLight position={[0, 5, 5]} intensity={0.3} angle={0.6} penumbra={1} />
 
       {textures.map((texture, index) => (
-        <FloatingImage key={index} texture={texture} index={index} rotation={rotation} />
+        <FloatingImage key={index} texture={texture} index={index} rotation={rotation} onSelect={onSelectFish} />
       ))}
 
       {/* Reflection plane */}
