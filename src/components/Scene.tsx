@@ -2,17 +2,50 @@ import { useRef, useState, useEffect } from "react"
 import { useFrame, useThree } from "@react-three/fiber"
 import * as THREE from "three"
 
-THREE.DefaultLoadingManager.onStart = () => {}
-const textureLoader = new THREE.TextureLoader()
-textureLoader.crossOrigin = "anonymous"
+function makeFallbackTexture(color = "#1a2a3a") {
+  const canvas = document.createElement("canvas")
+  canvas.width = 64
+  canvas.height = 64
+  const ctx = canvas.getContext("2d")!
+  ctx.fillStyle = color
+  ctx.fillRect(0, 0, 64, 64)
+  return new THREE.CanvasTexture(canvas)
+}
 
 function useTextures(urls: string[]) {
   const [textures, setTextures] = useState<THREE.Texture[]>([])
+
   useEffect(() => {
-    Promise.all(urls.map(url => new Promise<THREE.Texture>((resolve, reject) => {
-      textureLoader.load(url, resolve, undefined, reject)
-    }))).then(setTextures).catch(() => {})
+    let cancelled = false
+    Promise.all(
+      urls.map((url) =>
+        fetch(url)
+          .then((r) => r.blob())
+          .then(
+            (blob) =>
+              new Promise<THREE.Texture>((resolve) => {
+                const blobUrl = URL.createObjectURL(blob)
+                const img = new Image()
+                img.onload = () => {
+                  const tex = new THREE.Texture(img)
+                  tex.needsUpdate = true
+                  URL.revokeObjectURL(blobUrl)
+                  resolve(tex)
+                }
+                img.onerror = () => resolve(makeFallbackTexture())
+                img.src = blobUrl
+              })
+          )
+          .catch(() => makeFallbackTexture())
+      )
+    ).then((result) => {
+      if (!cancelled) setTextures(result)
+    })
+    return () => {
+      cancelled = true
+    }
   }, [])
+
   return textures
 }
 
